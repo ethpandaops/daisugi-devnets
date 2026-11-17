@@ -32,6 +32,9 @@ terraform.rc
 **/files/validator_keys/*
 network-configs/**/mnemonics.yaml
 
+# Kurtosis
+**/kurtosis/*
+
 # scripts
 scripts/*.txt
 scripts/*.json
