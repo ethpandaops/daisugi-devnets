@@ -1,6 +1,7 @@
 default_ethereum_client_images:
   ### Consensus layer clients
-  lighthouse: sigp/lighthouse:latest
+  # Lighthouse v8.2.2 + asanso/AA-PQ eip8288-lean patches (Daisugi fork)
+  lighthouse: pk910/dev-images:lighthouse-daisugi
   lodestar: chainsafe/lodestar:latest
   nimbus: statusim/nimbus-eth2:multiarch-latest
   prysm: gcr.io/offchainlabs/prysm/beacon-chain:latest
@@ -11,7 +12,8 @@ default_ethereum_client_images:
   besu: hyperledger/besu:latest
   geth: ethereum/client-go:stable
   erigon: erigontech/erigon:main-latest
-  nethermind: nethermindeth/nethermind:master
+  # NethermindEth/nethermind feature/eip8288-lean (af50ed1917)
+  nethermind: ethpandaops/nethermind:daisugi-devnet-0
   reth: ghcr.io/paradigmxyz/reth:latest
   nimbusel: ethpandaops/nimbus-eth1:master
   ethrex: ghcr.io/lambdaclass/ethrex:latest
@@ -34,16 +36,16 @@ default_tooling_images:
   fauceth: skylenet/fauceth:fix_fee_estimation
   powfaucet: pk910/powfaucet:v2-stable
   homepage: ethpandaops/ethereum-testnet-homepage:latest
-  checkpointz: ethpandaops/checkpointz:latest
+  checkpointz: ethpandaops/checkpointz:daisugi-support
   blockscout: blockscout/blockscout:latest
   blockscout_frontend: ghcr.io/blockscout/frontend:latest
   beacon_metrics_gazer: dapplion/beacon-metrics-gazer:latest
   eth_fauceth: chainflag/eth-faucet:latest
   blobscan: blossomlabs/blobscan:latest
   blobscan_indexer: blossomlabs/blobscan-indexer:latest
-  dora: ethpandaops/dora:master-latest
+  dora: ethpandaops/dora:daisugi-support-latest
   dugtrio: ethpandaops/dugtrio:latest
-  ethereum_genesis_generator: ethpandaops/ethereum-genesis-generator:6.2.1
+  ethereum_genesis_generator: ethpandaops/ethereum-genesis-generator:daisugi-devnets
   tracoor: ethpandaops/tracoor:latest
   ncli: status-im/nimbus-eth2:unstable
   lcli: ethpandaops/lighthouse:unstable

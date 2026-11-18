@@ -44,6 +44,11 @@ checkpoint_sync_url_kube: https://<path:/secrets/services/services.enc.yaml#ethe
 # role: ethpandaops.general.ethereum_genesis
 ethereum_genesis_generator_container_image: "{{ default_tooling_images.ethereum_genesis_generator }}"
 ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_image.split(':')[-1] }}"
+# The image is built from the daisugi-devnets branch, so the config templates come from that
+# branch too (the image tag is not a release version).
+ethereum_genesis_generator_ref: "daisugi-devnets"
+# Daisugi branches off Electra (active from genesis). Fulu, Gloas and Heze stay unscheduled.
+ethereum_genesis_daisugi_fork_epoch: 1
 ethereum_genesis_network_seed: "daisugi-devnet-0"
 ethereum_genesis_chain_id: "70{{ 9999999 | random(start=1000000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
@@ -56,13 +61,19 @@ ethereum_genesis_timestamp_relative_cmd:
 shadowfork_height: 0
 ethereum_genesis_mnemonic: "{{ secret_genesis_mnemonic }}"
 ethereum_genesis_generator_config_files:
-  cl/config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/v{{ethereum_genesis_generator_version}}/config-example/cl/config.yaml', split_lines=false) }}" # noqa yaml[line-length]
-  cl/mnemonics.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/v{{ethereum_genesis_generator_version}}/config-example/cl/mnemonics.yaml', split_lines=false) }}" # noqa yaml[line-length]
-  el/genesis-config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/v{{ethereum_genesis_generator_version}}/config-example/el/genesis-config.yaml', split_lines=false) }}" # noqa yaml[line-length]
+  # Upstream template plus the Daisugi fork lines (the generator substitutes the $VARS).
+  cl/config.yaml: |-
+    {{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/{{ ethereum_genesis_generator_ref }}/config-example/cl/config.yaml', split_lines=false) }}
+
+    # Daisugi
+    DAISUGI_FORK_VERSION: $DAISUGI_FORK_VERSION
+    DAISUGI_FORK_EPOCH: $DAISUGI_FORK_EPOCH
+  cl/mnemonics.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/{{ ethereum_genesis_generator_ref }}/config-example/cl/mnemonics.yaml', split_lines=false) }}" # noqa yaml[line-length]
+  el/genesis-config.yaml: "{{ lookup('ansible.builtin.url', 'https://raw.githubusercontent.com/ethpandaops/ethereum-genesis-generator/{{ ethereum_genesis_generator_ref }}/config-example/el/genesis-config.yaml', split_lines=false) }}" # noqa yaml[line-length]
   values.env: |-
     export CHAIN_ID="{{ ethereum_genesis_chain_id }}"
     export EL_AND_CL_MNEMONIC="{{ ethereum_genesis_mnemonic }}"
-    export NUMBER_OF_VALIDATORS=400
+    export NUMBER_OF_VALIDATORS={{ ethereum_genesis_validator_keyranges.values() | map(attribute='end') | map('int') | max }}
     export GENESIS_FORK_VERSION="0x10{{ ethereum_genesis_fork_version_suffix }}"
     export ALTAIR_FORK_VERSION="0x20{{ ethereum_genesis_fork_version_suffix }}"
     export BELLATRIX_FORK_VERSION="0x30{{ ethereum_genesis_fork_version_suffix }}"
@@ -72,9 +83,19 @@ ethereum_genesis_generator_config_files:
     export FULU_FORK_VERSION="0x70{{ ethereum_genesis_fork_version_suffix }}"
     export GLOAS_FORK_VERSION="0x80{{ ethereum_genesis_fork_version_suffix }}"
     export HEZE_FORK_VERSION="0x90{{ ethereum_genesis_fork_version_suffix }}"
+    export DAISUGI_FORK_VERSION="0xd0{{ ethereum_genesis_fork_version_suffix }}"
+    export DAISUGI_FORK_EPOCH={{ ethereum_genesis_daisugi_fork_epoch }}
+    export FULU_FORK_EPOCH=18446744073709551615
+    export GLOAS_FORK_EPOCH=18446744073709551615
+    export HEZE_FORK_EPOCH=18446744073709551615
+    export BPO_1_EPOCH=18446744073709551615
+    export BPO_2_EPOCH=18446744073709551615
+    export GENESIS_GASLIMIT=60000000
+    export MAX_PAYLOAD_SIZE=20971520
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
     export WITHDRAWAL_TYPE=0x02
+    export VALIDATOR_BALANCE=2048000000000
     export EL_PREMINE_ADDRS='{"0x9a97ee9d32a0d68406e32b34c92afb81ce2bc467": {"balance": "100000ETH"}, "0x107781Bc6FA8f66B843f4216fd6D5862D3aa4fcd": {"balance": "100000ETH"}, "0x118A1030baf8Fa56f9B8235C163d3112FA8c3b89": {"balance": "100000ETH"}}'
 
 # 0x9a97ee9d32a0d68406e32b34c92afb81ce2bc467: 100000ETH - arbitrum

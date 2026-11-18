@@ -27,12 +27,9 @@
 variable "nodes" {
   description = "List of node definitions for the devnet"
   default = [
-    { name = "bootnode", count = 1, cloud = "digitalocean" },
-    { name = "mev-relay", count = 1, cloud = "hetzner", size = "ccx53" },
-    { name = "buildoor-prysm-geth", count = 1, cloud = "hetzner" },
-    { name = "lighthouse-geth", count = 2, cloud = "digitalocean", validator_start = 0, validator_end = 400 },
-    { name = "lighthouse-geth", count = 1, cloud = "hetzner", validator_start = 400, validator_end = 500 },
-    { name = "prysm-nethermind", count = 1, cloud = "hetzner", validator_start = 500, validator_end = 550 },
+    # Daisugi has no PeerDAS (Electra base, blobs disabled), so nothing runs as a supernode.
+    { name = "bootnode", count = 1, cloud = "digitalocean", supernode = false },
+    { name = "lighthouse-nethermind", count = 4, cloud = "digitalocean", supernode = false, validator_start = 0, validator_end = 4000 },
   ]
 
   validation {
