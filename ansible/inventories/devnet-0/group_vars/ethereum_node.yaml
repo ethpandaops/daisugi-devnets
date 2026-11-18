@@ -10,9 +10,6 @@ ethereum_el_bootnodes: >-
       hostvars[primary_bootnode]['ethereum_node_fact_discovery_el_enr']]
      | reject('equalto', '') | list }}
 
-# xatu does not know the Daisugi fork
-ethereum_node_xatu_sentry_enabled: false
-
 # role: ethpandaops.general.brakebear
 brakebear_download_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('1000Mbps', '100Mbps') }}"
 brakebear_upload_speed: "{{ ethereum_node_cl_supernode_enabled | ternary('1000Mbps', '50Mbps') }}"
