@@ -48,12 +48,13 @@ ethereum_genesis_generator_version: "{{ ethereum_genesis_generator_container_ima
 # branch too (the image tag is not a release version).
 ethereum_genesis_generator_ref: "daisugi-devnets"
 # Daisugi branches off Electra (active from genesis). Fulu, Gloas and Heze stay unscheduled.
-ethereum_genesis_daisugi_fork_epoch: 1
+ethereum_genesis_daisugi_fork_epoch: 10
 ethereum_genesis_network_seed: "daisugi-devnet-0"
 ethereum_genesis_chain_id: "70{{ 9999999 | random(start=1000000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_fork_version_suffix: "{{ 999999 | random(start=100000, seed=ethereum_genesis_network_seed) }}"
 ethereum_genesis_generator_output_dir: "../network-configs/{{ network_iteration }}"
-ethereum_genesis_timestamp: "{{ lookup('ansible.builtin.pipe', '{{ ethereum_genesis_timestamp_relative_cmd[ansible_system] }}') }}"
+# 2026-11-18 16:00:00 CET (15:00:00 UTC) minus the 60s genesis delay
+ethereum_genesis_timestamp: 1795013940
 ethereum_genesis_timedelay: 60
 ethereum_genesis_timestamp_relative_cmd:
   Linux: "date +%s -d '+45 minutes'"
@@ -92,6 +93,7 @@ ethereum_genesis_generator_config_files:
     export BPO_2_EPOCH=18446744073709551615
     export GENESIS_GASLIMIT=60000000
     export MAX_PAYLOAD_SIZE=20971520
+    export SLOT_DURATION_MS=2000
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
     export WITHDRAWAL_TYPE=0x02
@@ -164,7 +166,7 @@ json_rpc_snooper_container_image: "{{ default_tooling_images.json_rpc_snooper }}
 # role: ethpandaops.general.ethereum_node
 ethereum_node_images_always_pull: true
 ethereum_node_metrics_exporter_enabled: true
-ethereum_node_xatu_sentry_enabled: true
+ethereum_node_xatu_sentry_enabled: false
 ethereum_node_cl_validator_enabled: "{{ validator_start is defined and validator_end is defined }}"
 ethereum_node_cl_validator_fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
 ethereum_node_cl_ports_p2p_tcp: 9000
@@ -202,7 +204,7 @@ ethereum_node_json_rpc_snooper_engine_public_port: 8961
 ethereum_node_json_rpc_snooper_engine_container_env:
   SNOOPER_API_PORT: "{{ ethereum_node_json_rpc_snooper_engine_public_port | quote }}"
   SNOOPER_API_AUTH: "{{ secret_nginx_shared_basic_auth.name }}:{{ secret_nginx_shared_basic_auth.password }}"
-  SNOOPER_XATU_ENABLED: "true"
+  SNOOPER_XATU_ENABLED: "false"
   SNOOPER_XATU_NAME: "{{ ethereum_network_name }}-{{ inventory_hostname }}"
   SNOOPER_XATU_NETWORK_NAME: "{{ ethereum_network_name }}"
   SNOOPER_XATU_NETWORK_ID: "{{ ethereum_network_id }}"
@@ -220,7 +222,19 @@ gen_kubernetes_config_dora_execution_endpoints_url: "https://raw.githubuserconte
 gen_kubernetes_config_dora_consensus_endpoints_url: "https://raw.githubusercontent.com/ethpandaops/{{ devnet_name }}-devnets/refs/heads/master/kubernetes/{{ network_iteration }}/dora/endpoints-cl.yaml"
 gen_kubernetes_config_dora_api_secret: "{{ secret_dora_api_key }}"
 # Dora block-arrival views from the per-devnet xatu databases.
-gen_kubernetes_config_dora_xatu_enabled: true
+gen_kubernetes_config_dora_xatu_enabled: false
+# Daisugi is not supported by assertoor, syncoor and xatu, and there is no
+# builder flow to show.
+gen_kubernetes_config_disabled_services:
+  - assertoor
+  - buildoor
+  - syncoor-server
+  - syncoor-web
+  - xatu-cannon
+  - xatu-mimicry
+  - xatu-cl-mimicry
+  - xatu-relay-monitor
+gen_kubernetes_config_dora_buildoor_overview_url: ""
 
 # role: ethpandaops.general.xatu_sentry
 xatu_sentry_container_image: "{{ default_tooling_images.xatu_sentry }}"

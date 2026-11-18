@@ -1,7 +1,7 @@
 default_ethereum_client_images:
   ### Consensus layer clients
   # Lighthouse v8.2.2 + asanso/AA-PQ eip8288-lean patches (Daisugi fork)
-  lighthouse: pk910/dev-images:lighthouse-daisugi
+  lighthouse: ethpandaops/lighthouse:daisugi-devnet-0
   lodestar: chainsafe/lodestar:latest
   nimbus: statusim/nimbus-eth2:multiarch-latest
   prysm: gcr.io/offchainlabs/prysm/beacon-chain:latest

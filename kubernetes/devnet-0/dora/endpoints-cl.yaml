@@ -1,0 +1,28 @@
+# Ansible managed. Don't change this file manually. Template info: /vendor/collections/ansible_collections/ethpandaops/general/roles/generate_kubernetes_config/templates/dora-endpoints-cl.yaml.j2
+# Consensus layer endpoints
+
+- url: https://bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+  name: bootnode-1
+  authGroup: pandaops
+  priority: -1
+- url: https://bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+  name: lighthouse-nethermind-1
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io
+  name: lighthouse-nethermind-2
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io
+  name: lighthouse-nethermind-3
+  authGroup: pandaops
+  priority: -1
+  archive: true
+- url: https://bn-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io
+  name: lighthouse-nethermind-4
+  authGroup: pandaops
+  priority: -1
+  archive: true
+
