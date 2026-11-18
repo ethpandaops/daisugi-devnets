@@ -124,6 +124,8 @@ erpc:
             - "eth_newPendingTransactionFilter"
             - "eth_maxPriorityFeePerGas"
             - "eth_sendRawTransaction"
+            - "eth_sendProofWrapper"
+            - "eth_getProofWrapper"
             - "eth_subscribe"
             - "eth_syncing"
             - "eth_uninstallFilter"
