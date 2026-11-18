@@ -93,7 +93,6 @@ ethereum_genesis_generator_config_files:
     export BPO_2_EPOCH=18446744073709551615
     export GENESIS_GASLIMIT=60000000
     export MAX_PAYLOAD_SIZE=20971520
-    export SLOT_DURATION_MS=2000
     export GENESIS_TIMESTAMP={{ ethereum_genesis_timestamp }}
     export GENESIS_DELAY={{ ethereum_genesis_timedelay }}
     export WITHDRAWAL_TYPE=0x02

@@ -31,7 +31,7 @@
     "depositContractAddress": "0x00000000219ab540356cBB839Cbe05303d7705Fa",
     "pragueTime": 0,
     "eip8141PrototypeTime": 1795013940,
-    "eip8288PrototypeTime": 1795014640
+    "eip8288PrototypeTime": 1795017840
   },
   "alloc": {
     "0x0000000000000000000000000000000000000000": {

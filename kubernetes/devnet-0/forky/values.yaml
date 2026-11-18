@@ -74,7 +74,7 @@ forky:
         network:
           name: "daisugi-devnet-0"
           spec:
-            seconds_per_slot: 2
+            seconds_per_slot: 12
             slots_per_epoch: 32
             genesis_time: 1795014000
       sources:
