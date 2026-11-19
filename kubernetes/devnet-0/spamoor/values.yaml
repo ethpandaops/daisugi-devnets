@@ -4,7 +4,7 @@ spamoor:
   fullnameOverride: spamoor
   image:
     repository: ethpandaops/spamoor
-    tag: master-latest
+    tag: pk910-pq-frame-tx-latest
     pullPolicy: Always
   resources:
     requests:
