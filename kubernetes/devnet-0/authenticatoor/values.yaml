@@ -60,7 +60,9 @@ authenticatoor:
 
   ingress:
     enabled: true
-    className: ingress-nginx-public
+    className: traefik-devnets
+    annotations:
+      ethpandaops.io/exposure: "public"
     hosts:
       - host: auth.daisugi-devnet-0.ethpandaops.io
         paths:

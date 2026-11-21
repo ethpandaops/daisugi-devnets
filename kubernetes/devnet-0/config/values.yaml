@@ -4,6 +4,7 @@ network: devnet-0
 chainId: 701563864
 
 domain: daisugi-devnet-0.ethpandaops.io
+ingressClassName: traefik-devnets
 
 config:
   enabled: true
