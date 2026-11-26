@@ -78,10 +78,10 @@ forky:
         - name: bootnode-1
           type: "beacon_node"
           config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+            address: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
             polling_interval: "12s"
         - name: lighthouse-nethermind-1
           type: "beacon_node"
           config:
-            address: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+            address: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
             polling_interval: "12s"
