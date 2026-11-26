@@ -97,9 +97,9 @@ tracoor-single:
         ethereum:
           overrideNetworkName: daisugi-devnet-0
           beacon:
-            nodeAddress: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
           execution:
-            nodeAddress: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true
@@ -107,9 +107,9 @@ tracoor-single:
         ethereum:
           overrideNetworkName: daisugi-devnet-0
           beacon:
-            nodeAddress: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
           execution:
-            nodeAddress: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+            nodeAddress: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
             traceDisableMemory: true
             traceDisableStack: true
             traceDisableStorage: true
