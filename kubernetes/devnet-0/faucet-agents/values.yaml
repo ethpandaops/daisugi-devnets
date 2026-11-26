@@ -34,22 +34,22 @@ powfaucet:
   httpProxyCount: 2
 
   faucetTitle: "daisugi-devnet-0 Agent Faucet"
-  faucetPrivkey: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.faucet_agents_private_key}>"
-  faucetRpcUrl: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io"
+  faucetPrivkey: "<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.faucet_agents_private_key}>"
+  faucetRpcUrl: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io"
   faucetRpcEndpoints:
-    - url: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io"
+    - url: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io"
       name: "bootnode-1"
       priority: 10
-    - url: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io"
+    - url: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io"
       name: "lighthouse-nethermind-1"
       priority: 5
-    - url: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io"
+    - url: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io"
       name: "lighthouse-nethermind-2"
       priority: 5
-    - url: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io"
+    - url: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io"
       name: "lighthouse-nethermind-3"
       priority: 5
-    - url: "https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io"
+    - url: "https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io"
       name: "lighthouse-nethermind-4"
       priority: 5
   faucetExplorerLink: "https://dora.daisugi-devnet-0.ethpandaops.io/tx/{txid}"
@@ -73,4 +73,4 @@ powfaucet:
 
   extraEnv:
     - name: FAUCET_ETH_REST_WALLET_KEY
-      value: "<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.faucet_agents_rest_private_key}>"
+      value: "<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.faucet_agents_rest_private_key}>"
