@@ -8,9 +8,6 @@
 # pgp:'F93098C3D8ED15D0924A6DDAEB4E93A88660C55B' # https://github.com/qu0b.gpg
 
 creation_rules:
-  # Ingress credentials for the logs/metrics gateways. Platform ArgoCD's key
-  # can open these files (and nothing else here) to create each network's
-  # ingress users.
   # The class's values the charts in kubernetes/ read. Core ArgoCD's devnet
   # plugin key (ethPandaOps .sops.yaml) can open this file when it renders them.
   - path_regex: (^|/)kubernetes/secrets\.sops\.yaml$
@@ -24,6 +21,9 @@ creation_rules:
       29C50D01122FDE78E257482DAA497EB2610A8435,
       9BE537027CB7467923E240FF2AED09371C121F91,
       F93098C3D8ED15D0924A6DDAEB4E93A88660C55B
+  # Ingress credentials for the logs/metrics gateways. Platform ArgoCD's key
+  # can open these files (and nothing else here) to create each network's
+  # ingress users.
   - path_regex: (^|/)ingress\.sops\.yaml$
     # The devnet ingress key, held only by the platform ArgoCD devnet ingress
     # plugin.
