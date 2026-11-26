@@ -31,13 +31,13 @@ dugtrio:
     - "^/teku/v[0-9]+/admin/.*"
 
   endpoints:
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+  - url: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
     name: bootnode-1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+  - url: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-1
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io
+  - url: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-2
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io
+  - url: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-3
-  - url: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io
+  - url: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@bn-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-4
