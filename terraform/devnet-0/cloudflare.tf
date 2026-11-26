@@ -99,17 +99,3 @@ resource "cloudflare_certificate_pack" "public" {
   cloudflare_branding    = false
   wait_for_active_status = true
 }
-
-# Adopts the records ethPandaOps' cloudflare Terraform created for this network.
-# Import IDs are <zone_id>/<record_id>. An imported record reads back with its
-# full name, and provider v3 replaces a record whose name differs from it, so
-# both records above use full names.
-import {
-  to = cloudflare_record.public
-  id = "68c1026fd88dcae8bf2dfa38025ea155/ea1179488aa6f2630af251012665ee83"
-}
-
-import {
-  to = cloudflare_record.public_star
-  id = "68c1026fd88dcae8bf2dfa38025ea155/3d5e7770d20b9c743fb6cb248018f77c"
-}
