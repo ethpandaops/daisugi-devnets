@@ -19,15 +19,15 @@ forkmon:
             pathType: Prefix
   network: "daisugi-devnet-0"
   endpoints:
-  - addr: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-bootnode-1.srv.daisugi-devnet-0.ethpandaops.io
     name: bootnode-1
-  - addr: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-1.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-1
-  - addr: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-2.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-2
-  - addr: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-3.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-3
-  - addr: https://<path:../../secrets.sops.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io
+  - addr: https://<path:/secrets/services/services.enc.yaml#ethereum | jsonPath {.testnets.daisugi-devnets.node_ingress.combined}>@rpc-lighthouse-nethermind-4.srv.daisugi-devnet-0.ethpandaops.io
     name: lighthouse-nethermind-4
 
   config: |
